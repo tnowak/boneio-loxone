@@ -1,0 +1,842 @@
+substitutions:
+  name: boneio-32-sw-07
+  friendly_name: 'BoneIO ESP 32x10 Switches'
+  serial_prefix: 'esp' #Don't change it.
+
+  # Configuration
+  boneio_ip_address: "192.168.103.32"
+  miniserver_ip_address: "192.168.103.3"
+  miniserver_udp_port: "9999"
+  
+esphome:
+  name: '${name}'
+  friendly_name: '${friendly_name}'
+  name_add_mac_suffix: true
+  project:
+    name: boneio.32x10-switches
+    version: '0.7'
+
+esp32:
+  board: nodemcu-32s
+
+ethernet:
+  id: eth
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO0_IN
+  phy_addr: 1
+  power_pin: GPIO16
+  use_address: ${boneio_ip_address}
+
+dashboard_import:
+  package_import_url: github://boneIO-eu/esphome/boneio-32x10_switches_v0_7.yaml@latest
+  import_full_config: true
+
+packages:
+  internals_packages:
+    url: https://github.com/boneIO-eu/esphome
+    ref: v1.6.0
+    files: [
+        'devices/buzzer.yaml',
+        'devices/serial_no.yaml',
+        'devices_v0_7/display.yaml',
+        'devices_v0_7/i2c.yaml',
+        'devices_v0_7-v0_9/ina219.yaml',
+        'devices_v0_7-v0_9/lm75b.yaml',
+        'devices_v0_7-v0_9/pcf.yaml',
+        'boards/output/out01_02.yaml',
+        'boards/output/out03_04.yaml',
+        'boards/output/out05_06.yaml',
+        'boards/output/out07_08.yaml',
+        'boards/output/out09_10.yaml',
+        'boards/output/out11_12.yaml',
+        'boards/output/out13_14.yaml',
+        'boards/output/out15_16.yaml',
+        'boards/output/out17_18.yaml',
+        'boards/output/out19_20.yaml',
+        'boards/output/out21_22.yaml',
+        'boards/output/out23_24.yaml',
+        'boards/output/out25_26.yaml',
+        'boards/output/out27_28.yaml',
+        'boards/output/out29_30.yaml',
+        'boards/output/out31_32.yaml',
+        # 'devices_v0_7-v0_9/one_wire.yaml',
+      ]
+
+external_components:
+  - source: github://chudini93/esphome-loxone-readonly@v2.0.0
+    components: [ loxone ]
+
+logger:
+api:
+  reboot_timeout: 0s
+ota:
+  - platform: esphome
+
+web_server:
+  port: 80
+  local: true
+
+time:
+  - platform: homeassistant
+    timezone: Europe/Warsaw
+
+switch:
+  - platform: output
+    name: 'Switch 01'
+    output: out_01
+    id: switch_01
+  - platform: output
+    name: 'Switch 02'
+    output: out_02
+    id: switch_02
+  - platform: output
+    name: 'Switch 03'
+    output: out_03
+    id: switch_03
+  - platform: output
+    name: 'Switch 04'
+    output: out_04
+    id: switch_04
+  - platform: output
+    name: 'Switch 05'
+    output: out_05
+    id: switch_05
+  - platform: output
+    name: 'Switch 06'
+    output: out_06
+    id: switch_06
+  - platform: output
+    name: 'Switch 07'
+    output: out_07
+    id: switch_07
+  - platform: output
+    name: 'Switch 08'
+    output: out_08
+    id: switch_08
+  - platform: output
+    name: 'Switch 09'
+    output: out_09
+    id: switch_09
+  - platform: output
+    name: 'Switch 10'
+    output: out_10
+    id: switch_10
+  - platform: output
+    name: 'Switch 11'
+    output: out_11
+    id: switch_11
+  - platform: output
+    name: 'Switch 12'
+    output: out_12
+    id: switch_12
+  - platform: output
+    name: 'Switch 13'
+    output: out_13
+    id: switch_13
+  - platform: output
+    name: 'Switch 14'
+    output: out_14
+    id: switch_14
+  - platform: output
+    name: 'Switch 15'
+    output: out_15
+    id: switch_15
+  - platform: output
+    name: 'Switch 16'
+    output: out_16
+    id: switch_16
+  - platform: output
+    name: 'Switch 17'
+    output: out_17
+    id: switch_17
+  - platform: output
+    name: 'Switch 18'
+    output: out_18
+    id: switch_18
+  - platform: output
+    name: 'Switch 19'
+    output: out_19
+    id: switch_19
+  - platform: output
+    name: 'Switch 20'
+    output: out_20
+    id: switch_20
+  - platform: output
+    name: 'Switch 21'
+    output: out_21
+    id: switch_21
+  - platform: output
+    name: 'Switch 22'
+    output: out_22
+    id: switch_22
+  - platform: output
+    name: 'Switch 23'
+    output: out_23
+    id: switch_23
+  - platform: output
+    name: 'Switch 24'
+    output: out_24
+    id: switch_24
+  - platform: output
+    name: 'Switch 25'
+    output: out_25
+    id: switch_25
+  - platform: output
+    name: 'Switch 26'
+    output: out_26
+    id: switch_26
+  - platform: output
+    name: 'Switch 27'
+    output: out_27
+    id: switch_27
+  - platform: output
+    name: 'Switch 28'
+    output: out_28
+    id: switch_28
+  - platform: output
+    name: 'Switch 29'
+    output: out_29
+    id: switch_29
+  - platform: output
+    name: 'Switch 30'
+    output: out_30
+    id: switch_30
+  - platform: output
+    name: 'Switch 31'
+    output: out_31
+    id: switch_31
+  - platform: output
+    name: 'Switch 32'
+    output: out_32
+    id: switch_32
+
+binary_sensor:
+  - platform: gpio
+    name: 'IN_01'
+    id: in_01
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 0
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI1=" + to_string(int(id(in_01).state)));
+
+  - platform: gpio
+    name: 'IN_02'
+    id: in_02
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 1
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI2=" + to_string(int(id(in_02).state)));
+
+  - platform: gpio
+    name: 'IN_03'
+    id: in_03
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 2
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI3=" + to_string(int(id(in_03).state)));
+
+  - platform: gpio
+    name: 'IN_04'
+    id: in_04
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 3
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI4=" + to_string(int(id(in_04).state)));
+
+  - platform: gpio
+    name: 'IN_05'
+    id: in_05
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 4
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI5=" + to_string(int(id(in_05).state)));
+
+  - platform: gpio
+    name: 'IN_06'
+    id: in_06
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 5
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI6=" + to_string(int(id(in_06).state)));
+
+  - platform: gpio
+    name: 'IN_07'
+    id: in_07
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 6
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI7=" + to_string(int(id(in_07).state)));
+
+  - platform: gpio
+    name: 'IN_08'
+    id: in_08
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 8
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI8=" + to_string(int(id(in_08).state)));
+
+  - platform: gpio
+    name: 'IN_09'
+    id: in_09
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 9
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI9=" + to_string(int(id(in_09).state)));
+
+  - platform: gpio
+    name: 'IN_10'
+    id: in_10
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 10
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI10=" + to_string(int(id(in_10).state)));
+
+  - platform: gpio
+    name: 'IN_11'
+    id: in_11
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 11
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI11=" + to_string(int(id(in_11).state)));
+
+  - platform: gpio
+    name: 'IN_12'
+    id: in_12
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 12
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI12=" + to_string(int(id(in_12).state)));
+
+  - platform: gpio
+    name: 'IN_13'
+    id: in_13
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 13
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI13=" + to_string(int(id(in_13).state)));
+
+  - platform: gpio
+    name: 'IN_14'
+    id: in_14
+    pin:
+      pcf8574: pcf_inputs_1to14
+      number: 14
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI14=" + to_string(int(id(in_14).state)));
+
+  - platform: gpio
+    name: 'IN_15'
+    id: in_15
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 6
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI15=" + to_string(int(id(in_15).state)));
+
+  - platform: gpio
+    name: 'IN_16'
+    id: in_16
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 5
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI16=" + to_string(int(id(in_16).state)));
+
+  - platform: gpio
+    name: 'IN_17'
+    id: in_17
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 4
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI17=" + to_string(int(id(in_17).state)));
+
+  - platform: gpio
+    name: 'IN_18'
+    id: in_18
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 3
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI18=" + to_string(int(id(in_18).state)));
+
+  - platform: gpio
+    name: 'IN_19'
+    id: in_19
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 2
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI19=" + to_string(int(id(in_19).state)));
+
+  - platform: gpio
+    name: 'IN_20'
+    id: in_20
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 1
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI20=" + to_string(int(id(in_20).state)));
+
+  - platform: gpio
+    name: 'IN_21'
+    id: in_21
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 0
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI21=" + to_string(int(id(in_21).state)));
+
+  - platform: gpio
+    name: 'IN_22'
+    id: in_22
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 8
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI22=" + to_string(int(id(in_22).state)));
+
+  - platform: gpio
+    name: 'IN_23'
+    id: in_23
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 9
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI23=" + to_string(int(id(in_23).state)));
+
+  - platform: gpio
+    name: 'IN_24'
+    id: in_24
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 10
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI24=" + to_string(int(id(in_24).state)));
+
+  - platform: gpio
+    name: 'IN_25'
+    id: in_25
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 11
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI25=" + to_string(int(id(in_25).state)));
+
+  - platform: gpio
+    name: 'IN_26'
+    id: in_26
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 12
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI26=" + to_string(int(id(in_26).state)));
+
+  - platform: gpio
+    name: 'IN_27'
+    id: in_27
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 13
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI27=" + to_string(int(id(in_27).state)));
+
+  - platform: gpio
+    name: 'IN_28'
+    id: in_28
+    pin:
+      pcf8574: pcf_inputs_15to28
+      number: 14
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI28=" + to_string(int(id(in_28).state)));
+
+  - platform: gpio
+    name: 'IN_29'
+    id: in_29
+    pin:
+      pcf8574: pcf_inputs_28to35_menu
+      number: 0
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI29=" + to_string(int(id(in_29).state)));
+
+  - platform: gpio
+    name: 'IN_30'
+    id: in_30
+    pin:
+      pcf8574: pcf_inputs_28to35_menu
+      number: 1
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI30=" + to_string(int(id(in_30).state)));
+
+  - platform: gpio
+    name: 'IN_31'
+    id: in_31
+    pin:
+      pcf8574: pcf_inputs_28to35_menu
+      number: 2
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI31=" + to_string(int(id(in_31).state)));  
+
+  - platform: gpio
+    name: 'IN_32'
+    id: in_32
+    pin:
+      pcf8574: pcf_inputs_28to35_menu
+      number: 3
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI32=" + to_string(int(id(in_32).state)));
+
+  - platform: gpio
+    name: 'IN_33'
+    id: in_33
+    pin:
+      pcf8574: pcf_inputs_28to35_menu
+      number: 4
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI33=" + to_string(int(id(in_33).state))); 
+
+  - platform: gpio
+    name: 'IN_34'
+    id: in_34
+    pin:
+      pcf8574: pcf_inputs_28to35_menu
+      number: 5
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI34=" + to_string(int(id(in_34).state)));
+
+  - platform: gpio
+    name: 'IN_35'
+    id: in_35
+    pin:
+      pcf8574: pcf_inputs_28to35_menu
+      number: 6
+      mode:
+        input: true
+      inverted: true
+    publish_initial_state: true
+    on_state:
+      - lambda: !lambda |-
+          id(loxone1).send_string_data("DI35=" + to_string(int(id(in_35).state)));
+
+loxone:
+  id: loxone1
+  loxone_ip: ${miniserver_ip_address}
+  loxone_port: ${miniserver_udp_port}
+  listen_port: 8888
+
+  on_string_data:
+    - lambda: !lambda |-
+        if (data == "DO1=1") {
+          id(switch_01).turn_on();
+        } else if (data == "DO1=0") {
+          id(switch_01).turn_off();
+        } else if (data == "DO2=1") {
+          id(switch_02).turn_on();
+        } else if (data == "DO2=0") {
+          id(switch_02).turn_off();
+        } else if (data == "DO3=1") {
+          id(switch_03).turn_on();
+        } else if (data == "DO3=0") {
+          id(switch_03).turn_off();
+        } else if (data == "DO4=1") {
+          id(switch_04).turn_on();
+        } else if (data == "DO4=0") {
+          id(switch_04).turn_off();
+        } else if (data == "DO5=1") {
+          id(switch_05).turn_on();
+        } else if (data == "DO5=0") {
+          id(switch_05).turn_off();
+        } else if (data == "DO6=1") {
+          id(switch_06).turn_on();
+        } else if (data == "DO6=0") {
+          id(switch_06).turn_off();
+        } else if (data == "DO7=1") {
+          id(switch_07).turn_on();
+        } else if (data == "DO7=0") {
+          id(switch_07).turn_off();
+        } else if (data == "DO8=1") {
+          id(switch_08).turn_on();
+        } else if (data == "DO8=0") {
+          id(switch_08).turn_off();
+        } else if (data == "DO9=1") {
+          id(switch_09).turn_on();
+        } else if (data == "DO9=0") {
+          id(switch_09).turn_off();
+        } else if (data == "DO10=1") {
+          id(switch_10).turn_on();
+        } else if (data == "DO10=0") {
+          id(switch_10).turn_off();
+        } else if (data == "DO11=1") {
+          id(switch_11).turn_on();
+        } else if (data == "DO11=0") {
+          id(switch_11).turn_off();
+        } else if (data == "DO12=1") {
+          id(switch_12).turn_on();
+        } else if (data == "DO12=0") {
+          id(switch_12).turn_off();
+        } else if (data == "DO13=1") {
+          id(switch_13).turn_on();
+        } else if (data == "DO13=0") {
+          id(switch_13).turn_off();
+        } else if (data == "DO14=1") {
+          id(switch_14).turn_on();
+        } else if (data == "DO14=0") {
+          id(switch_14).turn_off();
+        } else if (data == "DO15=1") {
+          id(switch_15).turn_on();
+        } else if (data == "DO15=0") {
+          id(switch_15).turn_off();
+        } else if (data == "DO16=1") {
+          id(switch_16).turn_on();
+        } else if (data == "DO16=0") {
+          id(switch_16).turn_off();
+        } else if (data == "DO17=1") {
+          id(switch_17).turn_on();
+        } else if (data == "DO17=0") {
+          id(switch_17).turn_off();
+        } else if (data == "DO18=1") {
+          id(switch_18).turn_on();
+        } else if (data == "DO18=0") {
+          id(switch_18).turn_off();
+        } else if (data == "DO19=1") {
+          id(switch_19).turn_on();
+        } else if (data == "DO19=0") {
+          id(switch_19).turn_off();
+        } else if (data == "DO20=1") {
+          id(switch_20).turn_on();
+        } else if (data == "DO20=0") {
+          id(switch_20).turn_off();
+        } else if (data == "DO21=1") {
+          id(switch_21).turn_on();
+        } else if (data == "DO21=0") {
+          id(switch_21).turn_off();
+        } else if (data == "DO22=1") {
+          id(switch_22).turn_on();
+        } else if (data == "DO22=0") {
+          id(switch_22).turn_off();
+        } else if (data == "DO23=1") {
+          id(switch_23).turn_on();
+        } else if (data == "DO23=0") {
+          id(switch_23).turn_off();
+        } else if (data == "DO24=1") {
+          id(switch_24).turn_on();
+        } else if (data == "DO24=0") {
+          id(switch_24).turn_off();
+        } else if (data == "DO25=1") {
+          id(switch_25).turn_on();
+        } else if (data == "DO25=0") {
+          id(switch_25).turn_off();
+        } else if (data == "DO26=1") {
+          id(switch_26).turn_on();
+        } else if (data == "DO26=0") {
+          id(switch_26).turn_off();
+        } else if (data == "DO27=1") {
+          id(switch_27).turn_on();
+        } else if (data == "DO27=0") {
+          id(switch_27).turn_off();
+        } else if (data == "DO28=1") {
+          id(switch_28).turn_on();
+        } else if (data == "DO28=0") {
+          id(switch_28).turn_off();
+        } else if (data == "DO29=1") {
+          id(switch_29).turn_on();
+        } else if (data == "DO29=0") {
+          id(switch_29).turn_off();
+        } else if (data == "DO30=1") {
+          id(switch_30).turn_on();
+        } else if (data == "DO30=0") {
+          id(switch_30).turn_off();
+        } else if (data == "DO31=1") {
+          id(switch_31).turn_on();
+        } else if (data == "DO31=0") {
+          id(switch_31).turn_off();
+        } else if (data == "DO32=1") {
+          id(switch_32).turn_on();
+        } else if (data == "DO32=0") {
+          id(switch_32).turn_off();
+        }
